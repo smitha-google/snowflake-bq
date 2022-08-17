@@ -1,5 +1,7 @@
 # Demo to get data from Snowflake on AWS to GCS to BQ <br>
 
+### This demo assumes the source database and table is identified in Snowflake. 
+
 ## 1) Create GCS Bucket
 
 Create a GCS bucket that will be used to unload data from Snowflake. For example, create a gcs bucket named <customername>_data and create a folder named “staging” in that bucket.
