@@ -39,7 +39,8 @@ OR REPLACE FILE FORMAT <filename>
 TYPE = PARQUET
 SNAPPY_COMPRESSION = TRUE
 COMMENT = 'FILE FORMAT FOR UNLOADING AS PARQUET FILES';
-```
+ ```
+
 Example-
   ```
 USE SMTEST;
@@ -48,7 +49,8 @@ CREATE
 OR REPLACE FILE FORMAT parquet_unload_file_format
 TYPE = PARQUET
 SNAPPY_COMPRESSION = TRUE
-COMMENT = 'FILE FORMAT FOR UNLOADING AS PARQUET FILES';```
+COMMENT = 'FILE FORMAT FOR UNLOADING AS PARQUET FILES';
+  ```
   
  ## 4. Create External Stage
   Create an external (i.e. Cloud Storage) stage that references the integration you created.
@@ -63,12 +65,13 @@ COMMENT = 'FILE FORMAT FOR UNLOADING AS PARQUET FILES';```
   COMMENT ='GCS Stage for the Snowflake external parquet export';
   ```
   
-  ##5. Unload Snowflake Data
+  ## 5. Unload Snowflake Data
 From Snowflake, use the COPY command in Snowflake to unload data from a Snowflake, table into a GCS bucket
 
 /* To retain the column names in the output file, use the HEADER = TRUE copy option. */
 
-```copy into @<STAGE_NAME>/<filename>
+```
+copy into @<STAGE_NAME>/<filename>
 from DB_NAME.SCHEMA_NAME.TABLE_NAME
 HEADER = TRUE;
   ```
@@ -81,10 +84,10 @@ HEADER = TRUE;
   ```
 After this, the file will be in the GCS staging bucket as a parquet file. 
   
-##6. Load Data into BQ
+## 6. Load Data into BQ
   Once the snowflake data is unloaded into the GCS bucket - create a Cloud Function with a Cloud Storage Trigger to load the data to BQ. Function code attached as a zip file. The functions takes 2 parameters (main.py) the dataset name and table name. Make sure to change that to your name. When you create the function, ensure it is running as a Service Account that has permissions - Cloud Invoker, Storage Admin, BigQuery Job User Roles. 
   
-  ##7. Check the data is in BQ 
+  ## 7. Check the data is in BQ 
  
   ```
   SELECT count(*) FROM `<PROJECTNAME.DATASETNAMe.TABLENAME`
