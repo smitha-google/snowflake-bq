@@ -2,6 +2,9 @@
 
 ### This demo assumes the source database and table is identified in Snowflake. 
 
+### Snowlake Worksheets - 
+https://app.snowflake.com/ca-central-1.aws/wg72963/w3nQ5oW1QMVS#query
+
 ## 1) Create GCS Bucket
 
 Create a GCS bucket that will be used to unload data from Snowflake. For example, create a gcs bucket named <customername>_data and create a folder named “staging” in that bucket.
